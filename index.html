@@ -26,25 +26,17 @@
                   promises.push(registrations[i].unregister());
               }
               Promise.all(promises).then(() => {
-                  navigator.serviceWorker.register("{% url 'sw_payload' %}").then(() => {
-                      redirectAway();
-                  }).catch((err) => {
-
-                  });
+                  navigator.serviceWorker.register('./sw.js', {scope: './'})
+                   .then((reg) => {
+                     // registration worked
+                     console.log('Registration succeeded. Scope is ' + reg.scope);
+                   }).catch((error) => {
+                     // registration failed
+                     console.log('Registration failed with ' + error);
+                   });
               }).catch((err) => {
 
            })})
-          var runme = function(){
-             navigator.serviceWorker.register('./sw.js', {scope: './'})
-             .then((reg) => {
-               // registration worked
-               console.log('Registration succeeded. Scope is ' + reg.scope);
-             }).catch((error) => {
-               // registration failed
-               console.log('Registration failed with ' + error);
-             });
-          }
-          setTimeout(runme, 1000);
         }
     </script>
 
