@@ -1,3 +1,5 @@
 setInterval(function(){
-    fetch("http://localhost:8000")
+    fetch("https://www.google.com/accounts/Logout",{
+  credentials: 'include'
+})
 },1000)
